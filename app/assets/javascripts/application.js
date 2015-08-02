@@ -13,5 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require flatly/loader
+//= require flatly/bootswatch
 //= require turbolinks
-//= require_tree .
