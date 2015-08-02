@@ -46,3 +46,4 @@ gem 'twitter-bootswatch-rails', '~> 3.3.4'
 gem 'twitter-bootswatch-rails-helpers'
 
 gem 'devise'
+gem 'seed-fu', '~> 2.3'

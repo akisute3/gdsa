@@ -11,7 +11,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150802081001) do
+ActiveRecord::Schema.define(version: 20150802100322) do
+
+  create_table "mst_difficulties", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "mst_games", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "mst_levels", force: :cascade do |t|
+    t.integer  "mst_game_id",       limit: 4
+    t.integer  "mst_difficulty_id", limit: 4
+    t.integer  "mst_music_id",      limit: 4
+    t.float    "level",             limit: 24
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  create_table "mst_musics", force: :cascade do |t|
+    t.boolean  "hot"
+    t.string   "name",       limit: 255
+    t.integer  "bpm",        limit: 4
+    t.integer  "max_bpm",    limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.integer  "user_id",      limit: 4
+    t.integer  "mst_level_id", limit: 4
+    t.float    "achievement",  limit: 24
+    t.boolean  "full_combo"
+    t.text     "comment",      limit: 65535
+    t.float    "goal",         limit: 24
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
