@@ -1,0 +1,15 @@
+table.table.table-bordered
+  thead
+    th name
+    - MstGame.all.each do |g|
+      - MstDifficulty.all.each do |d|
+        th= "#{g.name}:#{d.name}"
+  tbody
+    - musics.each do |m|
+      - row = []
+      - m.mst_levels.each do |l|
+        - row[l.mst_game_id * 4 - (5 - l.mst_difficulty_id)] = l.level
+      tr
+        td= m.name
+        - row.each do |c|
+          td= "%.2f" % c if c

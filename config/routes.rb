@@ -8,4 +8,6 @@ Rails.application.routes.draw do
       get :guitar
     end
   end
+
+  get 'musics' => 'musics#index'
 end
