@@ -1,0 +1,27 @@
+table.table
+  thead
+    tr
+      th
+      th 曲名
+      th 難易度
+      th 達成率
+      th スキル
+      th 目標
+      th ランク
+      th 目標まで
+      th コメント
+  tbody
+    - skills.each.with_index(1) do |skill, order|
+      - level = skill.mst_level
+      - music = level.mst_music
+      - game_type = (level.mst_game.name == 'Drum') ? '' : level.mst_game.name[0, 1]
+      tr
+        td = order
+        td = link_to music.name, edit_skill_path(skill)
+        td = format(level.level) + game_type
+        td = "#{format(skill.achievement)} %"
+        td = format(skill.point)
+        td = skill.goal ? format(skill.goal) : '-'
+        td = skill.grade
+        td = skill.goal ? "#{format(skill.goal - skill.achievement)} %" : '-'
+        td = skill.comment

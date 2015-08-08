@@ -1,7 +1,7 @@
 h1 =@user.email
 
-h2 Guitar
-= render 'skills/points', skills: @guitar_skills, goals: @guitar_goals
+h2 = link_to 'Guitar', guitar_user_path(@user.id)
+= render 'skills/summary', skills: @guitar_skills, goals: @guitar_goals
 
-h2 Drum
-= render 'skills/points', skills: @drum_skills, goals: @drum_goals
+h2 = link_to 'Drum', drum_user_path(@user.id)
+= render 'skills/summary', skills: @drum_skills, goals: @drum_goals

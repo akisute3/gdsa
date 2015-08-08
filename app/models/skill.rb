@@ -65,6 +65,25 @@ class Skill < ActiveRecord::Base
   end
 
 
+  # 達成率から評価を求める (返り値は文字列、未クリアなら '-' を返す)
+  def grade
+    case self.achievement
+    when 0
+      '-'
+    when 0...63
+      'C'
+    when 63...73
+      'B'
+    when 73...80
+      'A'
+    when 80...95
+      'S'
+    when 95..100
+      'SS'
+    end
+  end
+
+
   # save の事前処理追加版
   def check_and_save
     # mst_level が存在しなければ nil を返す
