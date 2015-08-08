@@ -1,0 +1,33 @@
+= form_for @skill do |f|
+  - if @skill.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@skill.errors.count, "error")} prohibited this skill from being saved:"
+      ul
+        - @skill.errors.full_messages.each do |message|
+          li = message
+  = fields_for @skill.mst_level do |l|
+    .form-group
+      = l.label :mst_game_id
+      = l.collection_select(:mst_game_id, MstGame.all, :id, :name,
+                            {disabled: @skill.mst_level.disabled_ids}, {class: 'form-control'})
+    .form-group
+      = l.label :mst_music_id
+      = l.collection_select(:mst_music_id, MstMusic.all, :id, :name, {}, {class: 'form-control', disabled: @skill.persisted?})
+      - if @skill.persisted?
+        = l.hidden_field :mst_music_id, value: @skill.mst_level.mst_music_id
+    .form-group
+      = l.label :mst_difficulty_id
+      = l.collection_select(:mst_difficulty_id, MstDifficulty.all, :id, :name, {}, {class: 'form-control'})
+  .form-group
+    = f.label :achievement
+    = f.text_field :achievement, class: 'form-control'
+  .form-group
+    = f.label :full_combo
+    = f.check_box :full_combo, class: 'checkbox'
+  .form-group
+    = f.label :comment
+    = f.text_area :comment, class: 'form-control'
+  .form-group
+    = f.label :goal
+    = f.text_field :goal, class: 'form-control'
+  .actions = f.submit

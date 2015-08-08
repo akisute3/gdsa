@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :skills, except: [:index, :show]
   get 'musics' => 'musics#index'
 end
