@@ -1,0 +1,21 @@
+table.table
+  thead
+    tr
+      th
+      th SKILL
+      th ALL
+      th HOT
+      th OTHERS
+  tbody
+    tr
+      th 現在
+      td = '%.2f' % (skills[:hot] + skills[:other])
+      td = '%.2f' % skills[:all]
+      td = '%.2f' % skills[:hot]
+      td = '%.2f' % skills[:other]
+    tr
+      th 目標
+      td = '%.2f' % (goals[:hot] + goals[:other])
+      td = '%.2f' % goals[:all]
+      td = '%.2f' % goals[:hot]
+      td = '%.2f' % goals[:other]
