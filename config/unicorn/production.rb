@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-listen  '/var/run/gdsa/unicorn.sock'
-pid     '/var/run/gdsa/unicorn.pid'
+ROOT = File.dirname(File.dirname(File.dirname(__FILE__)))
+
+listen  "#{ROOT}/tmp/pids/unicorn.sock"
+pid     "#{ROOT}/tmp/pids/unicorn.pid"
 
 worker_processes 2
 
-ROOT = File.dirname(File.dirname(__FILE__))
 stdout_path "#{ROOT}/log/unicorn-stdout.log"
 stderr_path "#{ROOT}/log/unicorn-stderr.log"
 
