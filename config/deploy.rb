@@ -13,8 +13,12 @@ namespace :deploy do
   end
 
   after :migrate, :seed do
-    within current_path do
-      execute :bundle, :exec, :rake, 'db:seed_fu'
+    on roles :db do
+      within release_path do
+        with rails_env: fetch(:stage) do
+          execute :rake, 'db:seed_fu'
+        end
+      end
     end
   end
 end
