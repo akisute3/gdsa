@@ -2,10 +2,14 @@
 class Skill < ActiveRecord::Base
   belongs_to :mst_level
 
+  validates :user_id, presence: true
+  validates :mst_level, presence: true, unique_music: true
   validates :achievement,
+    format: {with: /\A\d+(\.\d{1,2})?\z/},
     numericality: {more_than_or_equal_to: 0, less_than_or_equal_to: 100}
   validates :goal,
     allow_blank: true,
+    format: {with: /\A\d+(\.\d{1,2})?\z/},
     numericality: {more_than_or_equal_to: 0, less_than_or_equal_to: 100}
 
 
