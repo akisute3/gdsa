@@ -7,9 +7,7 @@ class MstLevel < ActiveRecord::Base
 
   # 同じゲーム (ドラムorギター) かつ同じ曲の全レベルの id リストを取得
   def extract_same_group_ids
-    game_ids = (self.mst_game.name == 'Drum') ? [1] : [2, 3]
-    music_id = self.mst_music.id
-    self.class.where(mst_game_id: game_ids, mst_music_id: music_id)
+    self.class.where(mst_game_id: mst_game.inst.game_ids, mst_music_id: mst_music.id)
   end
 
   # edit メソッドで変更を許可しない mst_game_id の配列を返す
