@@ -17,8 +17,8 @@ class UsersController < ApplicationController
     @title = 'GuitarFreaks'
     @skills = Skill.point_list(@user.id, :guitar, :current)
     @goals = Skill.point_list(@user.id, :guitar, :goal)
-    @hots = Skill.find_target(@user.id, :guitar, :hot)
-    @others = Skill.find_target(@user.id, :guitar, :other)
+    @hots = UserSkillQuery.new.find(@user.id, :guitar, :hot)
+    @others = UserSkillQuery.new.find(@user.id, :guitar, :other)
 
     render 'skill'
   end
@@ -27,8 +27,8 @@ class UsersController < ApplicationController
     @title = 'DrumMania'
     @skills = Skill.point_list(@user.id, :drum, :current)
     @goals = Skill.point_list(@user.id, :drum, :goal)
-    @hots = Skill.find_target(@user.id, :drum, :hot)
-    @others = Skill.find_target(@user.id, :drum, :other)
+    @hots = UserSkillQuery.new.find(@user.id, :drum, :hot)
+    @others = UserSkillQuery.new.find(@user.id, :drum, :other)
 
     render 'skill'
   end

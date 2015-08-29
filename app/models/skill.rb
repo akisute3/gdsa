@@ -12,21 +12,6 @@ class Skill < ActiveRecord::Base
   GAMES_GUITAR = ["Guitar", "Base"]
   GAMES_DRUM = "Drum"
 
-  # 引数のユーザ、曲種、ゲームのスキル一覧をスキルポイント順にソートして返す。
-  # inst は :guitar / :drum、music_type は :hot / :other。
-  def self.find_target(id, inst, music_type)
-    games = (inst == :guitar) ? GAMES_GUITAR : GAMES_DRUM
-    is_hot = (music_type == :hot)
-
-    skills = Skill.includes(mst_level: [:mst_music, :mst_game, :mst_difficulty])
-             .where("user_id" => id)
-             .where("mst_musics.hot" => is_hot)
-             .where("mst_games.name" => games)
-
-    skills.sort_by {|s| -s.point }
-  end
-
-
   # スキル計算に使用される曲の順位の下限
   HOT_SKILL_LIMIT = OTHER_SKILL_LIMIT = 25
 
@@ -34,8 +19,8 @@ class Skill < ActiveRecord::Base
   # 返り値は {current: 現在スキル, hot: 新曲スキル, other: 旧曲スキル, all: 全曲スキル}。
   def self.point_list(id, inst, skill_type)
     skills = {
-      hot: find_target(id, inst, :hot),
-      other: find_target(id, inst, :other)
+      hot: UserSkillQuery.new.find(id, inst, :hot),
+      other: UserSkillQuery.new.find(id, inst, :other)
     }
 
     if skill_type == :current
