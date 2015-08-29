@@ -4,10 +4,10 @@ class Skill < ActiveRecord::Base
 
   validates :user_id, presence: true
   validates :mst_level, presence: true, unique_music: true
-  validates :achievement,
+  validates :raw_achievement,
     format: {with: /\A\d+(\.\d{1,2})?\z/},
     numericality: {more_than_or_equal_to: 0, less_than_or_equal_to: 100}
-  validates :goal,
+  validates :raw_goal,
     allow_blank: true,
     format: {with: /\A\d+(\.\d{1,2})?\z/},
     numericality: {more_than_or_equal_to: 0, less_than_or_equal_to: 100}
@@ -43,12 +43,19 @@ class Skill < ActiveRecord::Base
 
   # カラムの float を Percentage オブジェクトにすり替える
   def achievement
-    @achievement ||= Percentage.new(self.read_attribute(:achievement))
+    @achievement ||= Percentage.new(read_attribute(:achievement))
   end
 
-  # カラムの float を Percentage オブジェクトにすり替える
   def goal
-    @goal ||= Percentage.new(self.read_attribute(:goal))
+    @goal ||= Percentage.new(read_attribute(:goal))
+  end
+
+  def raw_achievement
+    read_attribute(:achievement)
+  end
+
+  def raw_goal
+    read_attribute(:goal)
   end
 
   # 曲レベルと達成率からスキルを計算した Point オブジェクトを返す
