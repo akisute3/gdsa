@@ -18,7 +18,7 @@ class MstLevel < ActiveRecord::Base
 
   # レベルを文字列で返す。
   # ただし、ギタフリなら Guitar か Base を判別する文字を付ける
-  def to_s
+  def format
     str = '%.2f' % level
     str += " (#{level.mst_game.name[0, 1]})" if mst_game.inst.to_sym == :guitar
     str

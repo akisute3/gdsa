@@ -34,6 +34,10 @@ class Percentage
   end
 
   def to_s
-    (@percentage.nil?) ? '-' : '%.2f %' % @percentage
+    @percentage.to_s
+  end
+
+  def format
+    (@percentage.nil?) ? '' : '%.2f %' % @percentage
   end
 end

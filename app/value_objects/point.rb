@@ -34,6 +34,10 @@ class Point
   end
 
   def to_s
+    @point.to_s
+  end
+
+  def format
     '%.2f' % @point
   end
 end
