@@ -18,10 +18,10 @@ table.table
       tr
         td = order
         td = link_to music.name, edit_skill_path(skill)
-        td = format(level.level) + game_type
-        td = "#{format(skill.achievement)} %"
-        td = format(skill.point)
-        td = skill.goal ? format(skill.goal) : '-'
+        td = level.to_s
+        td = skill.achievement
+        td = skill.point
+        td = skill.goal
         td = skill.grade
-        td = skill.goal ? "#{format(skill.goal - skill.achievement)} %" : '-'
+        td = skill.goal.diff(skill.achievement)
         td = skill.comment

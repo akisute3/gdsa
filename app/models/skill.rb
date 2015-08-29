@@ -39,9 +39,9 @@ class Skill < ActiveRecord::Base
     }
 
     if skill_type == :current
-      skill_points = skills.map {|k,v| [k, v.map{|a| a.point }] }.to_h
+      skill_points = skills.map {|k,v| [k, v.map{|a| a.point.to_f }] }.to_h
     else
-      skill_points = skills.map {|k,v| [k, v.map{|a| a.goal_point }] }.to_h
+      skill_points = skills.map {|k,v| [k, v.map{|a| a.goal_point.to_f }] }.to_h
     end
 
     hot = skill_points[:hot].slice(0, HOT_SKILL_LIMIT).inject(0, :+)
@@ -52,22 +52,30 @@ class Skill < ActiveRecord::Base
   end
 
 
-  # 曲レベルと達成率からスキルポイントを計算して返す
-  def point
-    return (self.achievement / 100) * self.mst_level.level * 20
+  # カラムの float を Percentage オブジェクトにすり替える
+  def achievement
+    @achievement ||= Percentage.new(self.read_attribute(:achievement))
   end
 
-  # 曲レベルと目標達成率からスキルポイントを計算して返すが
-  # target を設定していなければスキルポイントを返す
+  # カラムの float を Percentage オブジェクトにすり替える
+  def goal
+    @goal ||= Percentage.new(self.read_attribute(:goal))
+  end
+
+  # 曲レベルと達成率からスキルを計算した Point オブジェクトを返す
+  def point
+    @point ||= Point.calc(mst_level.level, achievement.to_f)
+  end
+
+  # 曲レベルと目標達成率からスキルを計算した Point オブジェクトを返す
   def goal_point
-    return point unless self.goal
-    return (self.goal / 100) * self.mst_level.level * 20
+    @goal_point ||= Point.calc(mst_level.level, goal.to_f)
   end
 
 
   # 達成率から評価を求める (返り値は文字列、未クリアなら '-' を返す)
   def grade
-    case self.achievement
+    case self.achievement.to_f
     when 0
       '-'
     when 0...63
