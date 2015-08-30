@@ -11,6 +11,18 @@ class Inst
     end
   end
 
+  def self.from_game_id(game_id)
+    drum_ids = MstGame.where(name: DRUMS).pluck(:id)
+    guitar_ids = MstGame.where(name: GUITARS).pluck(:id)
+
+    case game_id.to_i
+    when *drum_ids
+      new :drum
+    when *guitar_ids
+      new :guitar
+    end
+  end
+
   def initialize(sym)
     @sym = sym
   end

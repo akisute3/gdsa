@@ -9,23 +9,13 @@ class SkillsController < ApplicationController
   end
 
   def create
-    if level = MstLevel.find_by(level_params)
-      same_group_ids = level.extract_same_group_ids
-      level_id = level.id
-    else
-      # 選択した難易度が存在しないときは、@skill を新規作成した後、
-      # update で存在しない level_id を引数にすることでバリデーションエラーさせる
-      # (エラーメッセージをバリデーションで一元管理するため)
-      same_group_ids = []
-      level_id = -1
-    end
-    @skill = Skill.find_or_initialize_by(user_id: current_user.id, mst_level_id: same_group_ids)
+    @skill = SameMusicSkillQuery.new.find_or_initialize(current_user.id, level_params)
 
     respond_to do |format|
       exec = (@skill.new_record?) ? '登録' : '更新'
-      if @skill.update(skill_params.merge(mst_level_id: level_id))
-        format.html {redirect_to ({action: 'new'}),
-                                 notice: "#{level.mst_game.name} の「#{level.mst_music.name}」を#{exec}しました。"}
+      if @skill.update(skill_params)
+        message = "#{@skill.mst_level.mst_game.name} の「#{@skill.mst_level.mst_music.name}」を#{exec}しました。"
+        format.html {redirect_to ({action: 'new'}), notice: message}
       else
         flash.now[:alert] = '登録に失敗しました。エラー内容を確認してください。'
         @skill.mst_level = MstLevel.new(level_params)
