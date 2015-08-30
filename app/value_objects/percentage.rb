@@ -34,7 +34,7 @@ class Percentage
   end
 
   def to_s
-    self.to_f.to_s
+    @percentage.to_s
   end
 
   def format

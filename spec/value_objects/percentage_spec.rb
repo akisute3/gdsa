@@ -21,7 +21,7 @@ RSpec.describe Percentage, type: :value_object do
     before do
       @percentage = Percentage.new(nil)
       @f = 0
-      @s = '0'
+      @s = ''
       @formatted = ''
     end
 
