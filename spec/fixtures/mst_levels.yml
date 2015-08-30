@@ -1,0 +1,279 @@
+##################
+# 青い月
+##################
+## Drum
+hot1_d_bsc:
+  id: 1
+  mst_game_id: 1
+  mst_difficulty_id: 1
+  mst_music_id: 1
+  level: 2.30
+hot1_d_adv:
+  id: 2
+  mst_game_id: 1
+  mst_difficulty_id: 2
+  mst_music_id: 1
+  level: 4.70
+hot1_d_ext:
+  id: 3
+  mst_game_id: 1
+  mst_difficulty_id: 3
+  mst_music_id: 1
+  level: 5.80
+hot1_d_mas:
+  id: 4
+  mst_game_id: 1
+  mst_difficulty_id: 4
+  mst_music_id: 1
+  level: 7.05
+## Guitar
+hot1_g_bsc:
+  id: 5
+  mst_game_id: 2
+  mst_difficulty_id: 1
+  mst_music_id: 1
+  level: 2.15
+hot1_g_adv:
+  id: 6
+  mst_game_id: 2
+  mst_difficulty_id: 2
+  mst_music_id: 1
+  level: 4.20
+hot1_g_ext:
+  id: 7
+  mst_game_id: 2
+  mst_difficulty_id: 3
+  mst_music_id: 1
+  level: 5.70
+hot1_g_mas:
+  id: 8
+  mst_game_id: 2
+  mst_difficulty_id: 4
+  mst_music_id: 1
+  level: 6.45
+## Base
+hot1_b_bsc:
+  id: 9
+  mst_game_id: 3
+  mst_difficulty_id: 1
+  mst_music_id: 1
+  level: 2.35
+hot1_b_adv:
+  id: 10
+  mst_game_id: 3
+  mst_difficulty_id: 2
+  mst_music_id: 1
+  level: 3.70
+hot1_b_ext:
+  id: 11
+  mst_game_id: 3
+  mst_difficulty_id: 3
+  mst_music_id: 1
+  level: 5.80
+hot1_b_mas:
+  id: 12
+  mst_game_id: 3
+  mst_difficulty_id: 4
+  mst_music_id: 1
+  level: 6.75
+
+##################
+# 凱歌の奏
+##################
+## Drum
+hot2_d_bsc:
+  id: 13
+  mst_game_id: 1
+  mst_difficulty_id: 1
+  mst_music_id: 2
+  level: 2.90
+hot2_d_adv:
+  id: 14
+  mst_game_id: 1
+  mst_difficulty_id: 2
+  mst_music_id: 2
+  level: 5.30
+hot2_d_ext:
+  id: 15
+  mst_game_id: 1
+  mst_difficulty_id: 3
+  mst_music_id: 2
+  level: 8.35
+## Guitar
+hot2_g_bsc:
+  id: 17
+  mst_game_id: 2
+  mst_difficulty_id: 1
+  mst_music_id: 2
+  level: 3.30
+hot2_g_adv:
+  id: 18
+  mst_game_id: 2
+  mst_difficulty_id: 2
+  mst_music_id: 2
+  level: 5.30
+hot2_g_ext:
+  id: 19
+  mst_game_id: 2
+  mst_difficulty_id: 3
+  mst_music_id: 2
+  level: 6.70
+## Base
+hot2_b_bsc:
+  id: 21
+  mst_game_id: 3
+  mst_difficulty_id: 1
+  mst_music_id: 2
+  level: 2.80
+hot2_b_adv:
+  id: 22
+  mst_game_id: 3
+  mst_difficulty_id: 2
+  mst_music_id: 2
+  level: 4.90
+hot2_b_ext:
+  id: 23
+  mst_game_id: 3
+  mst_difficulty_id: 3
+  mst_music_id: 2
+  level: 6.60
+
+##################
+# Chronos
+##################
+## Drum
+other1_d_bsc:
+  id: 25
+  mst_game_id: 1
+  mst_difficulty_id: 1
+  mst_music_id: 3
+  level: 4.55
+other1_d_adv:
+  id: 26
+  mst_game_id: 1
+  mst_difficulty_id: 2
+  mst_music_id: 3
+  level: 5.25
+other1_d_ext:
+  id: 27
+  mst_game_id: 1
+  mst_difficulty_id: 3
+  mst_music_id: 3
+  level: 6.85
+other1_d_mas:
+  id: 28
+  mst_game_id: 1
+  mst_difficulty_id: 4
+  mst_music_id: 3
+  level: 8.05
+## Guitar
+other1_g_bsc:
+  id: 29
+  mst_game_id: 2
+  mst_difficulty_id: 1
+  mst_music_id: 3
+  level: 4.75
+other1_g_adv:
+  id: 30
+  mst_game_id: 2
+  mst_difficulty_id: 2
+  mst_music_id: 3
+  level: 5.85
+other1_g_ext:
+  id: 31
+  mst_game_id: 2
+  mst_difficulty_id: 3
+  mst_music_id: 3
+  level: 7.30
+other1_g_mas:
+  id: 32
+  mst_game_id: 2
+  mst_difficulty_id: 4
+  mst_music_id: 3
+  level: 8.40
+## Base
+other1_b_bsc:
+  id: 33
+  mst_game_id: 3
+  mst_difficulty_id: 1
+  mst_music_id: 3
+  level: 4.85
+other1_b_adv:
+  id: 34
+  mst_game_id: 3
+  mst_difficulty_id: 2
+  mst_music_id: 3
+  level: 5.60
+other1_b_ext:
+  id: 35
+  mst_game_id: 3
+  mst_difficulty_id: 3
+  mst_music_id: 3
+  level: 7.20
+other1_b_mas:
+  id: 36
+  mst_game_id: 3
+  mst_difficulty_id: 4
+  mst_music_id: 3
+  level: 8.05
+
+##################
+# 三毛猫ロック
+##################
+## Drum
+other2_d_bsc:
+  id: 37
+  mst_game_id: 1
+  mst_difficulty_id: 1
+  mst_music_id: 4
+  level: 4.45
+other2_d_adv:
+  id: 38
+  mst_game_id: 1
+  mst_difficulty_id: 2
+  mst_music_id: 4
+  level: 6.35
+other2_d_ext:
+  id: 39
+  mst_game_id: 1
+  mst_difficulty_id: 3
+  mst_music_id: 4
+  level: 6.80
+## Guitar
+other2_g_bsc:
+  id: 41
+  mst_game_id: 2
+  mst_difficulty_id: 1
+  mst_music_id: 4
+  level: 4.05
+other2_g_adv:
+  id: 42
+  mst_game_id: 2
+  mst_difficulty_id: 2
+  mst_music_id: 4
+  level: 5.30
+other2_g_ext:
+  id: 43
+  mst_game_id: 2
+  mst_difficulty_id: 3
+  mst_music_id: 4
+  level: 6.70
+## Base
+other2_b_bsc:
+  id: 45
+  mst_game_id: 3
+  mst_difficulty_id: 1
+  mst_music_id: 4
+  level: 4.80
+other2_b_adv:
+  id: 46
+  mst_game_id: 3
+  mst_difficulty_id: 2
+  mst_music_id: 4
+  level: 5.30
+other2_b_ext:
+  id: 47
+  mst_game_id: 3
+  mst_difficulty_id: 3
+  mst_music_id: 4
+  level: 6.20

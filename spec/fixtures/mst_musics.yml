@@ -1,0 +1,18 @@
+# 1 は全難易度が存在する曲
+# 2 は MAS が存在しない曲
+hot1:
+  id: 1
+  hot: true
+  name: '青い月'
+hot2:
+  id: 2
+  hot: true
+  name: '凱歌の奏'
+other1:
+  id: 3
+  hot: false
+  name: 'Chronos'
+other2:
+  id: 4
+  hot: false
+  name: '三毛猫ロック'
