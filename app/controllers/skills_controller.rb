@@ -9,18 +9,25 @@ class SkillsController < ApplicationController
   end
 
   def create
-    @skill = Skill.new(skill_params.merge(user_id: current_user.id))
-    @skill.mst_level = MstLevel.find_by(level_params)
+    if level = MstLevel.find_by(level_params)
+      same_group_ids = level.extract_same_group_ids
+      level_id = level.id
+    else
+      # 選択した難易度が存在しないときは、@skill を新規作成した後、
+      # update で存在しない level_id を引数にすることでバリデーションエラーさせる
+      # (エラーメッセージをバリデーションで一元管理するため)
+      same_group_ids = []
+      level_id = -1
+    end
+    @skill = Skill.find_or_initialize_by(user_id: current_user.id, mst_level_id: same_group_ids)
 
-    # 更新
-    #  - 同じ Game, Music が既に登録されていたら上書き
-    #  - 選択した難易度が存在しなければ @skill.check_and_save は nil を返す
     respond_to do |format|
-      if @skill.check_and_save
-        format.html {redirect_to ({action: 'new'}), notice: '登録しました。'}
+      exec = (@skill.new_record?) ? '登録' : '更新'
+      if @skill.update(skill_params.merge(mst_level_id: level_id))
+        format.html {redirect_to ({action: 'new'}),
+                                 notice: "#{level.mst_game.name} の「#{level.mst_music.name}」を#{exec}しました。"}
       else
-        flash.now[:alert] =
-          '登録できませんでした。選択した難易度が存在しない可能性があります。'
+        flash.now[:alert] = '登録に失敗しました。エラー内容を確認してください。'
         @skill.mst_level = MstLevel.new(level_params)
         format.html {render :new}
       end
@@ -31,18 +38,21 @@ class SkillsController < ApplicationController
   end
 
   def update
-    # 更新
-    #  - 入力は同じ Game, Music に対してのみ許可 (Guitar, Base は切り替え可能)
-    #  - 選択した難易度が存在しなければ @skill.check_and_update は nil を返す
+    # update 失敗時のために、前の mst_level_id を保存しておく
+    pre_level_id = @skill.mst_level.id
+
+    # create と同様
+    level_id = (level = MstLevel.find_by(level_params)) ? level.id : -1
+
     respond_to do |format|
-      if @skill.check_and_update(skill_params, level_params)
-        flash.now[:alert] = '登録しました。'
+      if @skill.update(skill_params.merge(mst_level_id: level_id))
+        # flash.now[:alert] = '登録しました。'
         # TODO: action を返すメソッドを作成
         action = (@skill.mst_level.mst_game.name == 'Drum') ? :drum : :guitar
         format.html {redirect_to ({controller: 'users', id: current_user.id, action: action}), notice: '更新しました。'}
       else
-        flash.now[:alert] =
-          '登録できませんでした。選択した難易度が存在しない可能性があります。'
+        @skill.mst_level_id = pre_level_id
+        flash.now[:alert] = '登録に失敗しました。エラー内容を確認してください。'
         format.html {render :edit}
       end
     end

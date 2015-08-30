@@ -3,7 +3,8 @@ class Skill < ActiveRecord::Base
   belongs_to :mst_level
 
   validates :user_id, presence: true
-  validates :mst_level, presence: true, unique_music: true
+  validates :mst_level, presence: true
+  validates :mst_level, unique_music: true, on: :create
   validates :raw_achievement,
     format: {with: /\A\d+(\.\d{1,2})?\z/},
     numericality: {more_than_or_equal_to: 0, less_than_or_equal_to: 100}

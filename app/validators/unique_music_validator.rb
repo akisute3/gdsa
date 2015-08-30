@@ -1,10 +1,7 @@
 # coding: utf-8
 class UniqueMusicValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    unless value.kind_of?(MstLevel)
-      record.errors[attribute] << "に #{self.class} は適用できません。"
-      return
-    end
+    return unless value.kind_of?(MstLevel)
 
     same_music_level_ids = value.extract_same_group_ids.pluck(:id)
     same_music_skills = Skill.where(user_id: record.user_id)
