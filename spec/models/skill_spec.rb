@@ -68,6 +68,39 @@ RSpec.describe Skill, type: :model do
   end
 
   # インスタンスメソッドの期待通りの挙動
-  it '95.0〜100.0 が SS、80.0〜 が S、 73.0〜 が A、63.0〜 が B、それ以外は C 評価とする'
-  it '達成率より目標達成率が低い場合は、現在の達成率を目標達成率として計算する'
+  it 'スキルポイントリストを取得できる'
+
+  context 'カラム名で Percentage オブジェクトを取得できる' do
+    it '達成率' do
+      skill = build(:valid_difficulty)
+      expect(skill.achievement).to be_a_kind_of(Percentage)
+      expect(skill.achievement.to_f).to eq 85.0
+    end
+
+    it '目標達成率' do
+      skill = build(:valid_difficulty)
+      expect(skill.goal).to be_a_kind_of(Percentage)
+      expect(skill.goal.to_f).to eq 98.0
+    end
+  end
+
+  context 'カラム名で Point オブジェクトを取得できる' do
+    it 'スキルポイント' do
+      skill = build(:valid_difficulty)
+      expect(skill.point).to be_a_kind_of(Point)
+      expect(skill.point.to_f).to eq 113.9
+    end
+
+    it '目標スキルポイント' do
+      skill = build(:valid_difficulty)
+      expect(skill.goal_point).to be_a_kind_of(Point)
+      expect(skill.goal_point.to_f).to eq 131.32
+    end
+  end
+
+  it '達成率の評価となる Grade オブジェクトを取得できる' do
+    skill = build(:valid_difficulty)
+    expect(skill.grade).to be_a_kind_of(Grade)
+    expect(skill.grade.to_s).to eq 'S'
+  end
 end
