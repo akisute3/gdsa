@@ -10,6 +10,12 @@ RSpec.describe Skill, type: :model do
   end
 
   # バリデーションを失敗させるデータを正常完了させない
+  it 'ユーザ ID が未入力のスキルは登録しない' do
+    skill = build(:valid_difficulty, user_id: nil)
+    skill.valid?
+    expect(skill.errors[:user_id]).to include("can't be blank")
+  end
+
   it '存在しない難易度には登録しない' do
     expect(build(:invalid_difficulty)).to_not be_valid
   end
