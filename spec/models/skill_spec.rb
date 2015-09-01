@@ -17,12 +17,16 @@ RSpec.describe Skill, type: :model do
   end
 
   it '存在しない難易度には登録しない' do
-    expect(build(:invalid_difficulty)).to_not be_valid
+    skill = build(:invalid_difficulty)
+    skill.valid?
+    expect(skill.errors[:mst_level]).to include("can't be blank")
   end
 
   it '同じユーザが同じ楽器の同じ曲に複数のスキルを登録できない' do
     create(:valid_difficulty)
-    expect(build(:duplication_difficulty)).to_not be_valid
+    skill = build(:duplication_difficulty)
+    skill.valid?
+    expect(skill.errors[:mst_level]).to include('が同じグループに属するスキルは既に登録されています。')
   end
 
 
