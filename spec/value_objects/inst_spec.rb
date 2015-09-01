@@ -14,14 +14,22 @@ RSpec.describe Inst, type: :value_object do
     it 'ゲーム ID リストを取得できる' do
       expect(@inst.game_ids).to eq @game_ids
     end
+
+    it '別の楽器のゲーム名リストを取得できる' do
+      expect(@inst.reversed_games).to eq @reversed_games
+    end
+
+    it '別の楽器のゲーム ID リストを取得できる' do
+      expect(@inst.reversed_game_ids).to eq @reversed_game_ids
+    end
   end
 
   describe 'Drum' do
     before do
       @inst = Inst.from_game('Drum')
       @sym = :drum
-      @games = ['Drum']
-      @game_ids = [1]
+      @games, @reversed_games = ['Drum'], ['Guitar', 'Base']
+      @game_ids, @reversed_game_ids = [1], [2, 3]
     end
 
     it_should_behave_like 'ゲーム毎のテスト'
@@ -31,8 +39,8 @@ RSpec.describe Inst, type: :value_object do
     before do
       @inst = Inst.from_game('Guitar')
       @sym = :guitar
-      @games = ['Guitar', 'Base']
-      @game_ids = [2, 3]
+      @games, @reversed_games = ['Guitar', 'Base'], ['Drum']
+      @game_ids, @reversed_game_ids = [2, 3], [1]
     end
 
     it_should_behave_like 'ゲーム毎のテスト'
@@ -42,8 +50,8 @@ RSpec.describe Inst, type: :value_object do
     before do
       @inst = Inst.from_game('Guitar')
       @sym = :guitar
-      @games = ['Guitar', 'Base']
-      @game_ids = [2, 3]
+      @games, @reversed_games = ['Guitar', 'Base'], ['Drum']
+      @game_ids, @reversed_game_ids = [2, 3], [1]
     end
 
     it_should_behave_like 'ゲーム毎のテスト'

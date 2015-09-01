@@ -43,4 +43,17 @@ class Inst
   def game_ids
     MstGame.where(name: games).pluck(:id)
   end
+
+  def reversed_games
+    case @sym
+    when :drum
+      GUITARS
+    when :guitar
+      DRUMS
+    end
+  end
+
+  def reversed_game_ids
+    MstGame.where(name: reversed_games).pluck(:id)
+  end
 end
