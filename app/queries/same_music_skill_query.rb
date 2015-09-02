@@ -11,10 +11,14 @@ class SameMusicSkillQuery
   # level_param の難易度が存在しなければ
   # mst_level_id = -1 (存在しない level_id) で初期化する
   def find_or_initialize(user_id, level_params)
-    @relation.find_or_initialize_by(opts(user_id, level_params)) do |skill|
-      skill.user_id = user_id
-      skill.mst_level = MstLevel.find_by(level_params) || -1
+    skill = @relation.find_or_initialize_by(opts(user_id, level_params)) do |s|
+      s.user_id = user_id
     end
+
+    level = MstLevel.find_by(level_params)
+    skill.mst_level_id = (level) ? level.id : -1
+
+    skill
   end
 
 
