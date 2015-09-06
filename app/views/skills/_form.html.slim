@@ -9,7 +9,7 @@
     .form-group
       = l.label :mst_game_id
       = l.collection_select(:mst_game_id, MstGame.all, :id, :name,
-                            {disabled: @skill.mst_level.mst_game.inst.reversed_game_ids},
+                            {disabled: (@skill.mst_level.mst_game.nil?) ? nil : @skill.mst_level.mst_game.inst.reversed_game_ids},
                             {class: 'form-control'})
     .form-group
       = l.label :mst_music_id
