@@ -1,6 +1,6 @@
 class Inst
   DRUMS = ['Drum']
-  GUITARS = ['Guitar', 'Base']
+  GUITARS = ['Guitar', 'Bass']
 
   def self.from_game(game)
     case game
