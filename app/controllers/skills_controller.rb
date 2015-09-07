@@ -13,7 +13,7 @@ class SkillsController < ApplicationController
 
     respond_to do |format|
       exec = (@skill.new_record?) ? '登録' : '更新'
-      if @skill.update(skill_params)
+      if @skill.update(skill_params_for_update(@skill))
         message = "#{@skill.mst_level.mst_game.name} の「#{@skill.mst_level.mst_music.name}」を#{exec}しました。"
         format.html {redirect_to ({action: 'new'}), notice: message}
       else
@@ -71,5 +71,13 @@ class SkillsController < ApplicationController
     def level_params
       params.require(:mst_level).permit(
         :mst_game_id, :mst_music_id, :mst_difficulty_id)
+    end
+
+    # フォームの入力が空の場合に更新しない項目に対応した skill_params
+    def skill_params_for_update(skill)
+      sp = skill_params
+      sp['comment'] = skill.comment if sp['comment'].blank?
+      sp['goal'] = skill.goal.raw_data if sp['goal'].blank?
+      sp
     end
 end

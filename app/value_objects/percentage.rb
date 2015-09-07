@@ -40,4 +40,8 @@ class Percentage
   def format
     (@percentage.nil?) ? '' : '%.2f %' % @percentage
   end
+
+  def raw_data
+    @percentage
+  end
 end
