@@ -11,8 +11,8 @@ RSpec.describe MstGame, type: :model do
       game = MstGame.find_by(name: 'Guitar')
       expect(game.inst.to_sym).to eq :guitar
     end
-    it 'Base' do
-      game = MstGame.find_by(name: 'Base')
+    it 'Bass' do
+      game = MstGame.find_by(name: 'Bass')
       expect(game.inst.to_sym).to eq :guitar
     end
   end

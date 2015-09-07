@@ -13,7 +13,7 @@ RSpec.describe MstLevel, type: :model do
       expect(level.format).to eq '4.20 (G)'
     end
 
-    it 'Base は少数第 2 位までの数値の後ろに (B) が付く' do
+    it 'Bass は少数第 2 位までの数値の後ろに (B) が付く' do
       level = MstLevel.find(10)
       expect(level.format).to eq '3.70 (B)'
     end

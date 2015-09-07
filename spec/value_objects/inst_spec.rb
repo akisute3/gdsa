@@ -28,7 +28,7 @@ RSpec.describe Inst, type: :value_object do
     before do
       @inst = Inst.from_game('Drum')
       @sym = :drum
-      @games, @reversed_games = ['Drum'], ['Guitar', 'Base']
+      @games, @reversed_games = ['Drum'], ['Guitar', 'Bass']
       @game_ids, @reversed_game_ids = [1], [2, 3]
     end
 
@@ -39,18 +39,18 @@ RSpec.describe Inst, type: :value_object do
     before do
       @inst = Inst.from_game('Guitar')
       @sym = :guitar
-      @games, @reversed_games = ['Guitar', 'Base'], ['Drum']
+      @games, @reversed_games = ['Guitar', 'Bass'], ['Drum']
       @game_ids, @reversed_game_ids = [2, 3], [1]
     end
 
     it_should_behave_like 'ゲーム毎のテスト'
   end
 
-  describe 'Base' do
+  describe 'Bass' do
     before do
       @inst = Inst.from_game('Guitar')
       @sym = :guitar
-      @games, @reversed_games = ['Guitar', 'Base'], ['Drum']
+      @games, @reversed_games = ['Guitar', 'Bass'], ['Drum']
       @game_ids, @reversed_game_ids = [2, 3], [1]
     end
 

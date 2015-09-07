@@ -51,7 +51,7 @@ hot1_g_mas:
   mst_difficulty_id: 4
   mst_music_id: 1
   level: 6.45
-## Base
+## Bass
 hot1_b_bsc:
   id: 9
   mst_game_id: 3
@@ -118,7 +118,7 @@ hot2_g_ext:
   mst_difficulty_id: 3
   mst_music_id: 2
   level: 6.70
-## Base
+## Bass
 hot2_b_bsc:
   id: 21
   mst_game_id: 3
@@ -191,7 +191,7 @@ other1_g_mas:
   mst_difficulty_id: 4
   mst_music_id: 3
   level: 8.40
-## Base
+## Bass
 other1_b_bsc:
   id: 33
   mst_game_id: 3
@@ -258,7 +258,7 @@ other2_g_ext:
   mst_difficulty_id: 3
   mst_music_id: 4
   level: 6.70
-## Base
+## Bass
 other2_b_bsc:
   id: 45
   mst_game_id: 3
