@@ -35,7 +35,11 @@ class SkillsController < ApplicationController
     level_id = (level = MstLevel.find_by(level_params)) ? level.id : -1
 
     respond_to do |format|
-      if @skill.update(skill_params.merge(mst_level_id: level_id))
+      if @skill.user_id != current_user.id
+        # ログインユーザ以外のスキルがセットされていたらエラー
+        flash.now[:alert] = '他ユーザのスキルは編集できません。'
+        format.html {render :edit}
+      elsif @skill.update(skill_params.merge(mst_level_id: level_id))
         # flash.now[:alert] = '登録しました。'
         # TODO: action を返すメソッドを作成
         action = (@skill.mst_level.mst_game.name == 'Drum') ? :drum : :guitar
@@ -49,11 +53,16 @@ class SkillsController < ApplicationController
   end
 
   def destroy
-    @skill.destroy
-
     respond_to do |format|
-      action = (@skill.mst_level.mst_game.name == 'Drum') ? :drum : :guitar
-      format.html {redirect_to ({controller: 'users', id: current_user.id, action: action}), notice: '削除しました。'}
+      if @skill.user_id != current_user.id
+        # ログインユーザ以外のスキルがセットされていたらエラー
+        flash.now[:alert] = '他ユーザのスキルは削除できません。'
+        format.html {render :edit}
+      else
+        @skill.destroy
+        action = (@skill.mst_level.mst_game.name == 'Drum') ? :drum : :guitar
+        format.html {redirect_to ({controller: 'users', id: current_user.id, action: action}), notice: '削除しました。'}
+      end
     end
   end
 
